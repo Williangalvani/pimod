@@ -1,10 +1,10 @@
 FROM https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-05-28/2021-05-07-raspios-buster-armhf-lite.zip
 
-PUMP 10000M
+PUMP 5000M
 
 # fake a pi 4
 INSTALL examples/proc/cpuinfo /fakecpuinfo
 RUN mount --bind /fakecpuinfo /proc/cpuinfo
 
-RUN sudo su -c 'curl -fsSL https://raw.githubusercontent.com/williangalvani/companion-docker/master/install/install.sh | bash'
+RUN sudo su -c 'curl -fsSL https://raw.githubusercontent.com/williangalvani/companion-docker/master/install/install.sh | bash -s -- --ci-run'
 RUN rm /proc/cpuinfo
